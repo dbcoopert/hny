@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Selamat Tahun Baru 2024!</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('deadpool.jpg') center/cover no-repeat;
+            color: #fff;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+            animation: slideIn 1s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            color: #3498db;
+            font-size: 30px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            animation: blinkText 1s infinite alternate; /* Animasi kelap-kelip */
+            animation-duration: 0.4s; /* Durasi animasi kelap-kelip */
+        }
+
+        @keyframes blinkText {
+            from {
+                opacity: 8;
+            }
+            to {
+                opacity: 0.2;
+            }
+        }
+
+        .content p {
+            font-size: 10px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: red;
+        }
+
+        .countdown {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <div class="header">
+            <h2 class="title">Happy New Year 2024 Daks!</h2>
+        </div>
+        <div class="content">
+            <p>cable deadpool</p>
+        </div>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script src="particles.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: ['#3498db', '#e74c3c', '#2ecc71', '#f39c12'] // Tambahkan warna-warna lain yang diinginkan
+                    },
+                    shape: {
+                        type: 'circle',
+                        stroke: {
+                            width: 0,
+                            color: '#000000'
+                        },
+                        polygon: {
+                            nb_sides: 5
+                        },
+                        image: {
+                            src: 'img/github.svg',
+                            width: 100,
+                            height: 100
+                        }
+                    },
+                    opacity: {
+                        value: 0.9,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    size: {
+                        value: 5,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 90,
+                            size_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: '#ffffff',
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 6,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false,
+                        attract: {
+                            enable: false,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
+                    }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: 'repulse'
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: 'push'
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 400,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        bubble: {
+                            distance: 400,
+                            size: 40,
+                            duration: 2,
+                            opacity: 8,
+                            speed: 3
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4
+                        },
+                        push: {
+                            particles_nb: 4
+                        },
+                        remove: {
+                            particles_nb: 2
+                        }
+                    }
+                },
+                retina_detect: true
+            });
+
+            const targetDate = new Date('January 1, 2024 00:00:00').getTime();
+            const countdownInterval = setInterval(function() {
+                const currentDate = new Date().getTime();
+                const timeDifference = targetDate - currentDate;
+
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+                if (timeDifference < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown').innerHTML = 'Selamat Tahun Baru!';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
